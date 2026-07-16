@@ -1,0 +1,129 @@
+---
+title: "2_psychophysics_analysis"
+output: html_document
+---
+
+
+```{r load_functions}
+source("../r/fit_cosinor_metropsis_wrapper.R")
+in_progress <- FALSE
+getwd()
+
+```
+
+
+```{r constants}
+DATA_DIR = "../data"
+```
+
+
+```{r initialise_model, include=FALSE}
+# Input directory and file
+data_path <- file.path(DATA_DIR, "raw/clean_metropsis_TCS-2e.csv")
+tau_path <- file.path(DATA_DIR, "derivatives/hormones/tau_harmonics/melatonin_circadian_parameters.csv")
+
+# Output directory
+outcome_variable = "log_tcs" # "tcs" / "contrast_sensitivity"
+results_dir = file.path(DATA_DIR, "derivatives/log_tcs/multilevel")
+dir.create(results_dir, recursive = TRUE)
+
+# Define model specs
+full_def = "log_tcs ~ 1 + cosine_component + sine_component + (1 + cosine_component - sine_component | participant_id)"
+null_def = "log_tcs ~ 1 + (1 | participant_id)"
+```
+
+
+```{r run_model, include=FALSE}
+# Run model
+model_results <- pipeline_fit_cosinor_tcs_lmm_main(
+  data_path = data_path,
+  tau_path = tau_path,
+  out_dir = results_dir,
+  group_cols = c("condition", "freq"),
+  full_def = full_def,
+  null_def = null_def,
+  eval_subset = FALSE
+)
+```
+
+
+```{r visualisations}
+
+fig_dir = "../reports/fig/log_tcs/multilevel"
+dir.create(fig_dir, recursive = TRUE)
+
+# Plotting functions
+main_visualisation(
+  model_results = model_results,
+  outcome_var = "log_tcs",
+  out_dir = results_dir,
+  fig_dir = fig_dir
+  )
+```
+
+
+```{r clear}
+# Clear environment
+rm(list = ls())
+gc()
+```
+
+
+```{r tables, include=FALSE}
+source("./r/report_tables_tcs.R")
+
+# Report tables -----------------------------------------------------------
+results_dir = "../data/derivatives/log_tcs/multilevel"
+tau_path <-
+  "../data/derivatives/hormones/tau_harmonics/melatonin_circadian_parameters.csv"
+reports_dir <- "../reports"
+
+# Output directors
+tbl_dir <- file.path(reports_dir, "tables", "log_tcs/multilevel")
+dir.create(tbl_dir, recursive = TRUE)
+tex_dir <- file.path(reports_dir, "tex", "log_tcs/multilevel")
+dir.create(tex_dir, recursive = TRUE)
+
+cat("Processing results from:", results_dir)
+
+# Generate hormone output
+out_tex <- report_tables_tcs_main(tau_path=tau_path, metropsis_result_dir=results_dir, tbl_dir=tbl_dir, tex_dir=tex_dir)
+```
+
+
+```{r tex_reports, include=FALSE}
+source("./r/report_tex.R") # log TCS
+
+# Tex reports -------------------------------------------------------------
+data_path <-
+  file.path(results_dir, "fitted_fixed_parameters.csv")
+fitdf <- readr::read_csv(data_path, show_col_types = FALSE)
+
+# Sentences
+res_smry1 <- sprintf(
+  "In summary, the obtained Bayes factors for all models were very small, ranging from \\ac{logbf} values of $%s$ to $%s$.",
+  (round(min(fitdf$log_bf), 2)),
+  (round(max(fitdf$log_bf), 2))
+) %>% cat()
+
+tex_descriptive_melatonin <-
+  create_tex_descriptive_melatonin(data_path = "../data/raw/clean_saliva_data.csv",
+                                   tex_dir = "../reports/tex/log_tcs/multilevel")
+tex_inference_melatonin <-
+  create_tex_inference_melatonin(parameter_path = "../data/derivatives/hormones/tau_harmonics/melatonin_circadian_parameters.csv",
+                                 raw_path = "../data/raw/clean_saliva_data.csv",
+                                 tex_dir = "../reports/tex/log_tcs/multilevel")
+tex_descriptive_tcs <-
+  create_tex_descriptive_tcs(data_path = "../data/derivatives/log_tcs/multilevel/input_data.csv",
+                             tex_dir = "../reports/tex/log_tcs/multilevel")
+tex_inference_tcs <-
+  create_tex_inference_tcs(data_dir = "../data/derivatives/log_tcs/multilevel",
+                           tex_dir = "../reports/tex/log_tcs/multilevel")
+
+tex_methods_sample <-
+  create_tex_methods_sample(
+    labscreen_path = "../data/raw/Civibelabscreening_DATA_2025-08-11_1409.csv",
+    metropsis_path = "../data/raw/clean_metropsis_TCS-2e.csv",
+    tex_dir = "../reports/tex"
+  )
+```

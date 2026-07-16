@@ -1,0 +1,49 @@
+# folder
+fig/
+manuscript/
+reports/
+misc/
+dagnostics/
+.vscode/
+TODO.md
+
+# ...but keep hand-created graphics under reports/ tracked for reproducibility
+# (the parent folder is ignored above; re-include this subtree so hand-made
+#  figures that no script regenerates stay in version control).
+!reports/
+reports/*
+!reports/fig/
+reports/fig/*
+!reports/fig/graphics/
+!reports/fig/graphics/**
+
+# specific content in folders
+# exclude non-binary files
+data/**/*.pdf
+data/**/*.png
+data/**/*.jpg
+data/**/*.jpeg
+data/**/*.zip
+
+# exclude derivative data (can be generated)
+data/misc/*
+data/derivatives/
+
+# exclude any timestamped folders or subfolder of any level that start with a date YYYYMMDD (outdated)
+**/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_*/
+# exclude any folders or subfolders that start with a date in the format YYYYMMDD
+**/[0-9][0-9][0-9][0-9]_[0-9][0-9]_[0-9][0-9]_*/
+
+
+
+# hidden folders/files
+__pycache__/
+.vscode/
+.DS_Store
+.Rproj.user
+.Rhistory
+.RData
+.RDataTmp
+.Ruserdata
+.pyc
+.env

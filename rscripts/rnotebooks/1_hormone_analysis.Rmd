@@ -1,0 +1,28 @@
+---
+title: "hormone_analysis"
+output: html_document
+---
+
+```{r constant, include=FALSE}
+DATA_DIR = "../data/raw"
+```
+
+
+```{r load_functions}
+source("../r/fit_cosinor_hormones.R")
+```
+
+
+```{r hormone_analysis}
+# Hormone analysis --------------------------------------------------------
+
+# Fit hormone data to fundamental only or model with harmonics
+model_results <- fit_cosinor_hormones_main(
+  data_path = "../data/raw/clean_saliva_data.csv",
+  harmonics = c(1, 2),
+  out_data = "../data/derivatives/hormones/tau_harmonics",
+  out_figs = "../reports/fig/hormones/tau_harmonics"
+)
+
+```
+

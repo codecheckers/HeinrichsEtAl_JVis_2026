@@ -1,0 +1,19 @@
+name: civibetcs
+channels:
+  - conda-forge
+dependencies:
+  # Versions pinned to minor releases for reproducibility.
+  # These match the environment used for the published analysis; see the
+  # "Computational environment" subsection in README.md for full details.
+  - python=3.10.*
+  - numpy=1.24.*
+  - pandas=2.2.*
+  - scipy=1.14.*
+  - matplotlib=3.7.*
+  - openpyxl=3.1.*
+  - xlrd=2.0.*
+  - jupyterlab=4.2.*
+  - ipykernel=6.22.*
+  - pip
+  - pip:
+      - -e .
