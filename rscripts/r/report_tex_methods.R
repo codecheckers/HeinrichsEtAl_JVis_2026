@@ -111,8 +111,10 @@ clean_labscreen_with_metropsis <- function(labscreen_path, metropsis_path) {
   df <- df %>%
     dplyr::left_join(pid_experiment_dates, by = "participant_id")
   
-  # Override age at with calculation based on start of study
-  df$demo_age <- as.numeric(difftime(df$experiment_date, df$demo_dob, units = "days")) / 365.25
+  # Override age with calculation based on start of study (only if demo_dob is available)
+  if ("demo_dob" %in% names(df)) {
+    df$demo_age <- as.numeric(difftime(df$experiment_date, df$demo_dob, units = "days")) / 365.25
+  }
   
   
   # Select only participants with experimental data

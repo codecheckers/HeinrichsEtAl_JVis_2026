@@ -321,7 +321,7 @@ create_gof_figure <- function(model_results, out_dir = NULL) {
 #' @export
 #'
 create_plot_r2_against_tau <- function(gof_df, optimal_tau, pid) {
-  label_text <- substitute("Optimal " * tau * " = " * value, list(value = round(optimal_tau, 2)))
+  label_text <- paste0('"Optimal " * tau * " = ', round(optimal_tau, 2), '"')
   title_text <- substitute("R-squared vs. period " * tau * " for " * value, list(value = as.character(pid)))
   #print(pid)
   p <- ggplot2::ggplot(gof_df, ggplot2::aes(x = tau, y = rsquared)) +
@@ -347,7 +347,8 @@ create_plot_r2_against_tau <- function(gof_df, optimal_tau, pid) {
       color = "#30476B",
       hjust = -0.1,
       # Adjust horizontal position of text
-      size = 5
+      size = 5,
+      parse = TRUE
     ) +
     ggplot2::labs(
       title = title_text,
