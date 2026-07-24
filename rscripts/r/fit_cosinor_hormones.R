@@ -331,12 +331,12 @@ create_plot_r2_against_tau <- function(gof_df, optimal_tau, pid) {
       size = 1,
       stroke = 0.5
     ) +
-    #ggplot2::geom_line(color = "#30476B", size = 1) +
+    #ggplot2::geom_line(color = "#30476B", linewidth = 1) +
     ggplot2::geom_vline(
       xintercept = optimal_tau,
       color = "#30476B",
       linetype = "dashed",
-      size = 0.8
+      linewidth = 0.8
     ) +
     ggplot2::annotate(
       geom = "text",
