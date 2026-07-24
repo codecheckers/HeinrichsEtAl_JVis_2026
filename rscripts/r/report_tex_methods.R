@@ -111,10 +111,23 @@ clean_labscreen_with_metropsis <- function(labscreen_path, metropsis_path) {
   df <- df %>%
     dplyr::left_join(pid_experiment_dates, by = "participant_id")
   
-  # Override age at with calculation based on start of study
-  df$demo_age <- as.numeric(difftime(df$experiment_date, df$demo_dob, units = "days")) / 365.25
-  
-  
+  # Prefer age at start of study, recomputed from the date of birth. Pseudonymised
+  # exports of the lab screening drop demo_dob and ship a pre-computed demo_age
+  # (age at screening) instead, so fall back to that per participant wherever the
+  # date of birth is unavailable.
+  if (!any(c("demo_dob", "demo_age") %in% names(df))) {
+    stop("Lab screening data contains neither `demo_dob` nor `demo_age`; cannot derive participant age.")
+  }
+  if ("demo_dob" %in% names(df)) {
+    age_at_study <- as.numeric(difftime(df$experiment_date, df$demo_dob, units = "days")) / 365.25
+    df$demo_age <- if ("demo_age" %in% names(df)) {
+      dplyr::coalesce(age_at_study, as.numeric(df$demo_age))
+    } else {
+      age_at_study
+    }
+  }
+
+
   # Select only participants with experimental data
   valid_pid <- sort(unique(metropsis$participant_id))
   df <- df %>%
@@ -133,7 +146,7 @@ clean_labscreen_with_metropsis <- function(labscreen_path, metropsis_path) {
 #' @returns
 #' @export
 #'
-create_tex_methods_sample <- function(labscreen_path = file.path(RAW_DIR, "Civibelabscreening_DATA.csv"),
+create_tex_methods_sample <- function(labscreen_path = file.path(RAW_DIR, "Civibelabscreening_DATA_2025-08-11_1409.csv"),
                                       metropsis_path = file.path(RAW_DIR, "clean_metropsis_TCS-2e.csv"),
                                       tex_dir = file.path(TEX_DIR, "log_tcs/multilevel")){
   
