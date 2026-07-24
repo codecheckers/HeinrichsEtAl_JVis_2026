@@ -343,7 +343,10 @@ create_plot_r2_against_tau <- function(gof_df, optimal_tau, pid) {
       x = optimal_tau,
       y = max(gof_df$rsquared, na.rm = TRUE) * 0.9,
       # Position text near the top
-      label = label_text,
+      # as.expression() is required from ggplot2 4.0 on: layer aesthetics are
+      # validated through vctrs, which rejects the bare call that substitute()
+      # returns. An expression vector still renders as plotmath.
+      label = as.expression(label_text),
       color = "#30476B",
       hjust = -0.1,
       # Adjust horizontal position of text
@@ -570,11 +573,10 @@ create_scatter_sine_plot <- function(df,
   
   # Create base plot
   p <- ggplot2::ggplot(df, ggplot2::aes(x = .data[[x_col]], y = .data[[y_col]])) +
-    geom_hline(
+    ggplot2::geom_hline(
       yintercept = 0,
       linetype = "dashed",
-      color = "#990033",
-      ggplot2::aes(linetype = "zero")
+      color = "#990033"
     ) +
     # Data points
     ggplot2::geom_point(
@@ -644,11 +646,10 @@ create_scatter_plot_fitted <- function(df,
   
   # Create base plot
   p <- ggplot2::ggplot(df, ggplot2::aes(x = .data[[x_col]], y = .data[[y_col]])) +
-    geom_hline(
+    ggplot2::geom_hline(
       yintercept = 0,
       linetype = "dashed",
-      color = "#990033",
-      ggplot2::aes(linetype = "zero")
+      color = "#990033"
     ) +
     # Data points
     ggplot2::geom_point(
@@ -769,11 +770,10 @@ create_scatter_plot_fun <- function(df,
   p <-
     # Base line plot
     ggplot2::ggplot(df, ggplot2::aes(x = .data[[x_col]], y = .data[[y_col]])) +
-    geom_hline(
+    ggplot2::geom_hline(
       yintercept = 0,
       linetype = "dashed",
-      color = "#990033",
-      ggplot2::aes(linetype = "zero")
+      color = "#990033"
     ) +
     # Data points
     ggplot2::geom_point(
