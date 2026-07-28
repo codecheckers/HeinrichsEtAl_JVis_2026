@@ -191,7 +191,7 @@ The same script also produces the two **group-average panels**, which are likewi
 Generated figures are written to `results/figures/` (grouped by analysis, e.g. `results/figures/tcs/`, `results/figures/hormones/`, `results/figures/eyetracking/`).
 
 > **Note:** Several figures are not produced end-to-end by any current script or notebook. They fall into two categories:
-> - **Composed from code-generated panels** (the panels come from `plot_metropsis_group.py`; only the side-by-side layout is manual): `fig_individual_tcs_melatonin.pdf` is assembled from the four individual-timecourse panels, and the combined group-average figure `fig_average_tcs_melatonin.pdf` is assembled from the melatonin and TCS group-average panels (see the panel tables above).
+> - **Composed from code-generated panels** (the panels come from `plot_metropsis_group.py`; only the side-by-side layout is manual): `fig_individual_tcs_melatonin.pdf` is assembled from the four individual-timecourse panels, and the combined group-average figure `fig_average_tcs_melatonin.pdf` is assembled from the melatonin and TCS group-average panels (see the panel tables above). Likewise, `fig_diurnal_timecourses_metropsis.pdf` is assembled by hand from the two per-participant panels `fig_diurnal_timecourses_pid113.pdf` and `fig_diurnal_timecourses_pid202.pdf`, both produced by `src/pymetropsis/postcontrol/plot_diurnal_control.py` and written to `results/figures/eyetracking/`. The composed figure itself is kept at `results/figures/postcontrol/fig_diurnal_timecourses_metropsis.pdf`, which is the source `scripts/rename_figures.sh` copies into the manuscript as `Figure8.pdf`.
 > - **Created entirely by hand** (no code panels): `fig_methods_summary.pdf` is drawn in BioRender.
 >
 > These hand-created and hand-composed figures are kept under version control in `reports/fig/graphics/`.
@@ -251,7 +251,7 @@ the root relative to the working directory, so **R scripts must be run from the
 │       ├── report_tex*.R             # Stage 3: TeX fragment generation
 │       └── utils.R                   # Shared utilities (lists R package dependencies)
 │
-├── scripts/                          # Bash helper scripts (eyetracking extraction)
+├── scripts/                          # Bash helper scripts (eyetracking extraction, manuscript figure renaming)
 │
 └── src/
     └── pymetropsis/
