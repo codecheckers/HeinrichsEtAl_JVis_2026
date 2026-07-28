@@ -3,5 +3,6 @@ local/
 cellar/
 lock/
 python/
+results/
 sandbox/
 staging/
