@@ -44,5 +44,5 @@ echo "Appendix figures (from supplement):"
 rename_from ../results/figures/hormones/tau_harmonics fig_melatonin_scatter-func.pdf Figure6.pdf
 rename_from ../results/figures/hormones/tau_harmonics fig_melatonin_tau_gof.pdf      Figure7.pdf
 rename_from ../results/figures/postcontrol fig_diurnal_timecourses_metropsis.pdf Figure8.pdf
-rename_supp fig_pupil_diameter.pdf                 Figure9.pdf
+rename_from ../results/figures/eyetracking fig_pupil_diameter.pdf Figure9.pdf
 echo "Done."
