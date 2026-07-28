@@ -343,14 +343,15 @@ create_plot_r2_against_tau <- function(gof_df, optimal_tau, pid) {
     ggplot2::annotate(
       geom = "text",
       x = optimal_tau,
-      y = max(gof_df$rsquared, na.rm = TRUE) * 0.9,
-      # Position text near the top
+      y = min(gof_df$rsquared, na.rm = TRUE),
+      # Position text at the bottom of the line
       # as.expression() is required from ggplot2 4.0 on: layer aesthetics are
       # validated through vctrs, which rejects the bare call that substitute()
       # returns. An expression vector still renders as plotmath.
       label = as.expression(label_text),
       color = "#30476B",
       hjust = -0.1,
+      vjust = 0,
       # Adjust horizontal position of text
       size = 5
     ) +
@@ -481,7 +482,7 @@ add_scatter_plot_design <- function(p,
                                     participant_id = NULL,
                                     tau = NULL) {
   p <- p +
-    labs(y = "Salivary melatonin\\concentration [pg/ml]", x = "Time since wake-up [h]")
+    labs(y = "Salivary melatonin\\concentration [pg/ml]", x = "Hours since wake-up [h]")
   
   p <- p +
     # Bayesplot-inspired theme
@@ -884,8 +885,8 @@ fit_cosinor_hormones_main <-
       p = combined_plot,
       out_dir = out_figs,
       filename = "fig_melatonin_tau_gof.pdf",
-      w = 15,
-      h = 15
+      w = 14,
+      h = 14
     )
     
     # Create scatter plot with fitted function
@@ -916,8 +917,8 @@ fit_cosinor_hormones_main <-
       p = combined_plot,
       out_dir = out_figs,
       filename = "fig_melatonin_scatter-func.pdf",
-      w = 15,
-      h = 15
+      w = 14,
+      h = 14
     )
     
     
