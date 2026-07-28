@@ -356,7 +356,7 @@ def sessionwise_timecourses_in_condition_frequency_plot(data, x_col="hours_since
     fig.text(
         x=distance_left_edge,
         y=(1 - distance_top_edge) + (distance_top_edge * 2 / 3),
-        s=f"Diurnal variation of chromatic thresholds (participant {data['participant_id'].unique()[0]})",
+        s=f"Diurnal variation in temporal contrast sensitivity (participant {data['participant_id'].unique()[0]})",
         transform=fig.transFigure,
         fontsize=14,
         # fontweight="bold",
@@ -402,7 +402,7 @@ def main():
 
         plot_utils.save_figure(
             fig=fig,
-            fig_name=f"diurnal_timecourses_pid{pid}.pdf",
+            fig_name=f"fig_diurnal_timecourses_pid{pid}.pdf",
             fig_dir=FIG_DIR / "eyetracking",
         )
 

@@ -28,6 +28,8 @@ prepare_hormone_data <- function(data_path) {
                    .data$session_id,
                    .data$timestamp_number) %>%
     dplyr::filter(.data$session_id == "FD") %>%
+    # Exclude participant 200 from all downstream fits and figures
+    dplyr::filter(.data$participant_id != 200) %>%
     # Start of FD was exactly 1 h after wake time
     dplyr::mutate(hours_since_start = .data$hours_after_wakeup - 1) %>%
     dplyr::mutate(participant_id = as.factor(.data$participant_id))
@@ -322,7 +324,7 @@ create_gof_figure <- function(model_results, out_dir = NULL) {
 #'
 create_plot_r2_against_tau <- function(gof_df, optimal_tau, pid) {
   label_text <- substitute("Optimal " * tau * " = " * value, list(value = round(optimal_tau, 2)))
-  title_text <- substitute("R-squared vs. period " * tau * " for " * value, list(value = as.character(pid)))
+  title_text <- substitute("R-squared vs. period " * tau * " for participant " * value, list(value = as.character(pid)))
   #print(pid)
   p <- ggplot2::ggplot(gof_df, ggplot2::aes(x = tau, y = rsquared)) +
     ggplot2::geom_point(
@@ -479,7 +481,7 @@ add_scatter_plot_design <- function(p,
                                     participant_id = NULL,
                                     tau = NULL) {
   p <- p +
-    labs(y = "Salivary melatonin concentr. [pg/ml]", x = "Time since wake up")
+    labs(y = "Salivary melatonin\\concentration [pg/ml]", x = "Time since wake-up [h]")
   
   p <- p +
     # Bayesplot-inspired theme
@@ -517,8 +519,8 @@ add_scatter_plot_design <- function(p,
       "Salivary melatonin of participant " * pid * " fitted with " * italic(tau) * " = " * value,
       list(value = round(tau, 2), pid = as.character(unique(participant_id)))
     ),
-    x = "Time since wake up [hours]",
-    y = "Salivary melatonin concentr. [pg/ml]"
+    x = "Time since wake-up [h]",
+    y = "Salivary melatonin concentration [pg/ml]"
   )
   # p <- p +
   #   guides(
