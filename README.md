@@ -43,7 +43,7 @@ The analysis pipeline runs in four steps: preprocessing (Python), statistical mo
 
 ```bash
 git clone <repository-url>
-cd HeinrichsEtAl_JVis_2025
+cd HeinrichsEtAl_JVis_2026
 ```
 
 **2. Python** — Python >= 3.10. **Run this from the repository root** (the directory containing `environment.yaml` and `pyproject.toml`). Creating the environment installs the `pymetropsis` package via the `pip: -e .` entry in the file, and that `-e .` is a *relative* path — so `conda env create` will fail to find the package if run from any other directory. This creates an environment named `civibetcs` (the name is set inside the file) with `pymetropsis` installed in editable mode, so its modules are importable from the notebooks and scripts:
@@ -55,6 +55,8 @@ conda activate civibetcs
 ```
 
 > To rebuild the environment from scratch, remove it first with `conda env remove -n civibetcs`.
+
+> `pip install -e .` must be run from this repository's root — it records that path as the source of `pymetropsis`, and all scripts and notebooks read paths (`DATA_DIR`, `FIG_DIR`, ...) relative to it.
 
 **3. R** — R 4.4.3. The pipeline uses `brms` (with a working Stan/C++ toolchain via `rstan`), `bridgesampling` (for the Bayes factors), `lme4`, `dplyr`, `ggplot2`, `readr`, and `lubridate`, plus `rprojroot` for path resolution. Exact versions of every R package used for the published analysis are pinned in [`renv.lock`](renv.lock). To recreate that library:
 
