@@ -239,7 +239,7 @@ def plot_polar_participant_phases(
 
     # ax.set_theta_labels(90)  # Position theta labels
     ax.set_xlabel(
-        "Estimated phase angle\n(Hours of peak prior to wake time)"#, labelpad=20
+        "Estimated phase angle\n(Hours from peak to next wake-up)"  # , labelpad=20
     )
 
     # Add major and minor grid lines for x Axis
@@ -261,7 +261,7 @@ def plot_polar_participant_phases(
     ax.xaxis.grid(
         True, which="minor", color="black", linestyle="-", linewidth=0.3, alpha=0.2
     )
-    #ax.tick_params(axis="x", which="major", length=4, color="blue")
+    # ax.tick_params(axis="x", which="major", length=4, color="blue")
 
     # ax.set_theta_zero_location("N")  # Set 0 at the top
     # ax.set_theta_direction(-1)  # Clockwise direction
@@ -408,8 +408,8 @@ def _plot_annotated_profiles(
     # phase_wrap = np.mod(phase_est, 2 * np.pi)
     tau_est = pid_data["tau"].unique().item()
     # Transform phase to hours (tau specific)
-    phase_hours = (phase_est / (2 * np.pi)) * tau_est
-    phase_hours_mark = tau_est - phase_hours
+    phase_hours = (phase_est / (2 * np.pi)) * tau_est  # = φ/ω
+    phase_hours_mark = tau_est - phase_hours  # = τ − φ/ω
     # Add text annotation to lin
     ax.axvline(
         x=phase_hours_mark,
@@ -423,7 +423,7 @@ def _plot_annotated_profiles(
     ax.text(
         x=phase_hours_mark,
         y=max_yval + 3,
-        s=f"$\phi$ = {phase_est:.2f}, i.e. {phase_hours:.2f} hours phase angle corresponds to an\nacrophase of {phase_hours_mark:.2f} hours at a period of $\\tau$ = {tau_est:.2f} hours",
+        s=f"$\\phi$ = {phase_est:.2f} rad ({phase_hours:.2f} h) phase angle corresponds to an esti-\nmated time to peak of {phase_hours_mark:.2f} h at a period of $\\tau$ = {tau_est:.2f} h.",
         color=edge_colour,
         bbox=dict(facecolor="#FFEFB355", edgecolor="#FFEEB355", pad=3),
     )
@@ -566,7 +566,7 @@ def plot_two_melatonin_profiles(fig: plt.Figure, ax: plt.Axes, data: pd.DataFram
         [0, 8, 16, 24, 32, 40],
         ["00:00", "08:00", "16:00", "24:00", "32:00", "40:00"],
     )
-    secax.set_xlabel("Hours since wake up [hh:mm]")
+    secax.set_xlabel("Hours from peak to next wake-up [hh:mm]")
 
     # Legend
     handles, labels = ax.get_legend_handles_labels()
