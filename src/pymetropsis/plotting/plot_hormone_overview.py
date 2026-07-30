@@ -665,4 +665,4 @@ if __name__ == "__main__":
     # fig.suptitle(f"Overview of melatonin parameters" fontsize=14, y=1)
     fig, axes = create_melatonin_grid_figure(meldata=meldata)
     plt.show()
-    save_figure(fig_name="img_melatonin_overview_figure.svg", fig_dir=out_dir, fig=fig)
+    save_figure(fig_name="img_melatonin_overview_figure.pdf", fig_dir=out_dir, fig=fig)

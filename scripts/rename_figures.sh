@@ -35,8 +35,8 @@ rename_from() {
 
 echo "Renaming figures in $TEX (backup: $TEX.bak):"
 rename fig_methods_summary.pdf                     Figure1.pdf
-rename img_melatonin_overview_figure.pdf           Figure2.pdf
-rename fig_psychophysics_test_timeseries_212-2.pdf Figure3.pdf
+rename_from ../results/figures/hormones/descriptives img_melatonin_overview_figure.pdf Figure2.pdf
+rename_from ../results/figures/tcs fig_psychophysics_test_timeseries_212-2.pdf Figure3.pdf
 rename fig_average_tcs_melatonin.pdf               Figure4.pdf
 rename fig_individual_tcs_melatonin.pdf            Figure5.pdf
 
