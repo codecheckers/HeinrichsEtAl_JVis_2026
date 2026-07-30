@@ -215,7 +215,7 @@ def plot_melatonin(
                 * (np.cos(2 * (2 * np.pi * x) / tau))
             )
         )
-    ax.plot(x, y, color="#30476B", linestyle="solid", label="Sinusoid fit")
+    ax.plot(x, y, color="#30476B", linestyle="solid", label="Cosinor fit")
     # ax.grid(True)
 
 def create_plot_blocks_individual_timecourses(data: pd.DataFrame, letter: str = None):

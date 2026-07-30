@@ -595,7 +595,7 @@ create_scatter_sine_plot <- function(df,
     warning("Circular parameters are missing.")
   } else {
     p +
-      # Sinus curve
+      # Cosine curve
       ggplot2::stat_function(
         fun = function(x)
           est_mesor + est_amplitude * cos((2 * pi * x / tau) + est_phase),
@@ -795,7 +795,7 @@ create_scatter_plot_fun <- function(df,
         fun = fitted_fun,
         color = "#30476B",
         linetype = "solid",
-        ggplot2::aes(colour = "Sinusoid fit")
+        ggplot2::aes(colour = "Cosinor fit")
       )
   } else {
     warning("No fitted function provided, showing only data points")
