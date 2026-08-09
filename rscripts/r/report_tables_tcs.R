@@ -94,25 +94,27 @@ create_tbl_tau <- function(tau_path,
         "2nd harmonic" = 2
       ))
   } else {
+    # Fundamental-only layout has 6 columns, so no harmonic spanner here
     tex_out <- tex_out %>%
-      kableExtra::add_header_above(c(
-        " " = 4,
-        "Fundamental" = 2,
-        "2nd harmonic" = 2
-      )) %>%
       kableExtra::add_header_above(c(
         " " = 1,
         "Fit statistics" = 2,
-        "Circadian parameters" = ifelse(with_harmonics, 5, 3)
+        "Circadian parameters" = 3
       ))
   }
   
   mean_taus <- tau_df %>%
     dplyr::filter(.data$participant_id != 200) %>%
     dplyr::select(dplyr::all_of(names_vec))  %>%
+    # Phase columns hold angles, so they need circular statistics: the linear
+    # mean of angles straddling +/-pi can fall outside the observed range (the
+    # second harmonic phases here do exactly that).
     summarise(across(where(is.numeric),
                      list(
-                       mean = ~ mean(.), sd = ~ sd(.)
+                       mean = ~ if (dplyr::cur_column() %in% c("phase", "phase_2"))
+                         circular_mean(.) else mean(.),
+                       sd = ~ if (dplyr::cur_column() %in% c("phase", "phase_2"))
+                         circular_sd(.) else sd(.)
                      ),
                      .names = "{.col} {.fn}")) %>%
     tidyr::pivot_longer(
