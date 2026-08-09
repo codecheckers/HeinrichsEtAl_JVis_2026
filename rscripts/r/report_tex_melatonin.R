@@ -381,36 +381,42 @@ create_tex_inference_melatonin <-
     amplitude_fund_min <- min(df$amplitude)
     amplitude_fund_max <- max(df$amplitude)
     
-    # Calculate phases of fundamental
-    phase_fund_mean <- mean(df$phase) %>% wrap_phase()
-    phase_fund_sd <- sd(df$phase) %>% wrap_phase()
-    phase_fund_min <- min(df$phase) %>% wrap_phase()
-    phase_fund_max <- max(df$phase) %>% wrap_phase()
-    
-    # Add roundsci(phase_harm_mean) to 7:00 am and format as time hh:mm
-    phase_fund_mean_time <- phase_to_hm(theta=phase_fund_mean) 
-    phase_fund_sd_time <- phase_to_hm(theta=phase_fund_sd)
-    phase_fund_min_time <- phase_to_hm(theta=phase_fund_min)
-    phase_fund_max_time <- phase_to_hm(theta=phase_fund_max)
-    
+    # Calculate phases of fundamental.
+    # Phases are angles, so summarise them circularly: the arithmetic mean of
+    # angles straddling a branch cut can fall outside the observed range. min/max
+    # are taken after wrapping onto the branch centred on the circular mean, so
+    # the reported range is not split by an arbitrary cut at 0 or +/-pi.
+    phase_fund_mean <- circular_mean(df$phase)
+    phase_fund_sd <- circular_sd(df$phase)
+    phase_fund_range <- circular_range(df$phase)
+    phase_fund_min <- phase_fund_range[["min"]]
+    phase_fund_max <- phase_fund_range[["max"]]
+
+    # Time of peak, in hours after wakeup (the time origin the models were fitted
+    # on). Converted per participant with their own tau, then summarised: tau is
+    # participant-specific, so a single summarised phase cannot be converted.
+    peak_fund <- phase_to_decimal_time(theta = df$phase, tau = df$tau, harmonic = 1)
+    peak_fund_mean <- mean(peak_fund)
+    peak_fund_min <- min(peak_fund)
+    peak_fund_max <- max(peak_fund)
+    # An SD is a spread, not a position, so it scales without the peak's sign flip
+    peak_fund_sd <- radians_to_hours(phase_fund_sd, tau = mean(df$tau))
+
     # Calculate amplitude_harm_mean, amplitude_harm_sd, amplitude_harm_min, amplitude_harm_max
     amplitude_harm_mean <- mean(df$amplitude_2)
     amplitude_harm_sd <- sd(df$amplitude_2)
     amplitude_harm_min <- min(df$amplitude_2)
     amplitude_harm_max <- max(df$amplitude_2)
     
-    # Calculate phase_harm_mean, phase_harm_sd, phase_harm_min, phase_harm_max
-    phase_harm_mean <- mean(df$phase_2) %>% wrap_phase()
-    phase_harm_sd <- sd(df$phase_2) %>% wrap_phase()
-    phase_harm_min <- min(df$phase_2) %>% wrap_phase()
-    phase_harm_max <- max(df$phase_2) %>% wrap_phase()
-    
-    # Add roundsci(phase_harm_mean) to 7:00 am and format as time hh:mm
-    phase_harm_mean_time <- phase_harm_mean %>% phase_to_hm() 
-    phase_harm_sd_time <- phase_harm_sd %>% phase_to_hm()
-    phase_harm_min_time <- phase_harm_min %>% phase_to_hm()
-    phase_harm_max_time <- phase_harm_max %>% phase_to_hm()
-    
+    # Calculate phase_harm_mean, phase_harm_sd, phase_harm_min, phase_harm_max.
+    # Summarised circularly: these phases straddle +/-pi, so the arithmetic mean
+    # is not meaningful for them (it lands outside the observed range).
+    phase_harm_mean <- circular_mean(df$phase_2)
+    phase_harm_sd <- circular_sd(df$phase_2)
+    phase_harm_range <- circular_range(df$phase_2)
+    phase_harm_min <- phase_harm_range[["min"]]
+    phase_harm_max <- phase_harm_range[["max"]]
+
     
     format_scientific_latex <- function(num) {
       sci <- formatC(num, format = "e", digits = 3)
@@ -467,9 +473,12 @@ polar plot in Figure~\\ref{{fig:img_melatonin_overview_figure}}B.
 The amplitudes of the fundamental melatonin rhythms measures on average 
 ${amplitude_fund_mean}\\pm{amplitude_fund_sd}$ \\ac{{pgml}}, ranging from ${amplitude_fund_min}$ 
 to ${amplitude_fund_max}$ \\ac{{pgml}}.
-Average phase for the fundamental is ${phase_fund_mean}\\pm{phase_fund_sd}$ ({phase_fund_mean_time}$\\pm${phase_fund_sd_time} hours), 
-ranging from ${phase_fund_min}$ ({phase_fund_min_time} hours) to ${phase_fund_max}$ ({phase_fund_max_time}). 
-Conversion into hours of phase angle of the fundamental component are based on an ideal 24:00 hour sinusoidal rhythm. 
+Average phase for the fundamental is ${phase_fund_mean}\\pm{phase_fund_sd}$ radians,
+ranging from ${phase_fund_min}$ to ${phase_fund_max}$.
+The corresponding melatonin peak falls on average ${peak_fund_mean}\\pm{peak_fund_sd}$ hours
+after wakeup, ranging from ${peak_fund_min}$ to ${peak_fund_max}$ hours.
+Peak times were derived per participant from their own phase and period $\\tau$, and
+phases were summarised using circular statistics.
 % Second harmonics
 Amplitudes of the second harmonic were at ${amplitude_harm_mean}\\pm{amplitude_harm_sd}$ \\ac{{pgml}}, 
 ranging from ${amplitude_harm_min}$ to ${amplitude_harm_max}$ \\ac{{pgml}}. 
@@ -507,10 +516,10 @@ of the peak of the melatonin rhythm, as can be seen in Figure~\\ref{{fig:img_mel
       phase_fund_sd = roundsci(phase_fund_sd),
       phase_fund_min = roundsci(phase_fund_min),
       phase_fund_max = roundsci(phase_fund_max),
-      phase_fund_mean_time = phase_fund_mean_time,
-      phase_fund_sd_time = phase_fund_sd_time,
-      phase_fund_min_time = phase_fund_min_time,
-      phase_fund_max_time = phase_fund_max_time,
+      peak_fund_mean = roundsci(peak_fund_mean),
+      peak_fund_sd = roundsci(peak_fund_sd),
+      peak_fund_min = roundsci(peak_fund_min),
+      peak_fund_max = roundsci(peak_fund_max),
       fund_freq_201 = roundsci(fund_freq_201), #round(1/(tau_201*60*60),2), 
       harm_freq_201 = roundsci(harm_freq_201), #round(2/(tau_201*60*60),2),
       pid_tau_min = pid_tau_min,
