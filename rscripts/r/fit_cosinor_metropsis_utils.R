@@ -7,6 +7,7 @@ library(dplyr)
 library(lubridate)
 library(brms)
 library(stringr)
+source("./r/utils.R")
 
 # Functions ---------------------------------------------------------------
 
@@ -45,8 +46,12 @@ extract_sine_parameters_lm <- function(fit) {
   sine_estimate <- coefs["sine_component"]
   cosine_estimate <- coefs["cosine_component"]
   
-  amplitude <- sqrt(sine_estimate ^ 2 + cosine_estimate ^ 2)
-  phase <- atan2(cosine_estimate, sine_estimate)
+  # Cosinor convention, matching calc_phase(); atan2(cosine, sine) would instead
+  # give the phase of the sine form, which is offset by pi/2
+  amplitude <- calc_amplitude(
+    sine_estimate = sine_estimate, cosine_estimate = cosine_estimate)
+  phase <- calc_phase(
+    sine_estimate = sine_estimate, cosine_estimate = cosine_estimate)
   
   return(
     list(
@@ -92,8 +97,9 @@ extract_sine_parameters_brms <- function(fit) {
   sine_estimate <- fixed_params["sine_component", "Estimate"]
   cosine_estimate <- fixed_params["cosine_component", "Estimate"]
   
-  amplitude <- sqrt(sine_estimate ^ 2 + cosine_estimate ^ 2)
-  phase <- atan2(cosine_estimate, sine_estimate)
+  # Cosinor convention, matching calc_phase(); see extract_sine_parameters_lm()
+  amplitude <- calc_amplitude(sine_estimate = sine_estimate, cosine_estimate = cosine_estimate)
+  phase <- calc_phase(sine_estimate = sine_estimate, cosine_estimate = cosine_estimate)
   
   return(
     list(
