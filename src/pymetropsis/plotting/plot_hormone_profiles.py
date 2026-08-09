@@ -129,7 +129,7 @@ def create_hormone_plots(hormone_data):
         colour=plt.colormaps.get_cmap("viridis")(50),
     )
 
-    ax1.set_xlabel("Hours after wake up")
+    ax1.set_xlabel("Hours after wake-up")
     ax1.set_ylabel("Melatonin concentration (pg/mL)")
     ax1.set_title(
         "Profiles of salivary hormone concentration",
@@ -189,7 +189,7 @@ def create_hormone_plot_participants(hormone_data, hormone: str="melatonin"):
     ax1.xaxis.set_major_formatter(ticker.FuncFormatter(lambda x, p: f"{int(x)}"))  # Format tick labels as integers
     ax1.set_xlim(-0.5,41.5)
     ax1.xaxis.set_minor_locator(ticker.MultipleLocator(1))  # Set minor tick spacing to 1 hour
-    ax1.set_xlabel("Hours after wake up")
+    ax1.set_xlabel("Hours after wake-up")
     ax1.set_ylabel(f"{hormone.lower().capitalize()} concentration (pg/mL)")
     ax1.legend(loc="upper left", frameon=False)
 
