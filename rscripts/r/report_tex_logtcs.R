@@ -556,20 +556,24 @@ create_tex_inference_tcs <-
     max_odds_null <- 1 / min_bf
     min_odds_null <- 1 / max_bf
     
-    rg2_indiv_phase_min <-
-      df %>% filter(condition == "red-green", freq == 2) %>% pull(phase_p) %>% min()
-    rg2_indiv_phase_max <-
-      df %>% filter(condition == "red-green", freq == 2) %>% pull(phase_p) %>% max()
+    # Individual phases are angles, so their spread is taken on the circle:
+    # min()/max() applied to them directly are split by the branch cut at +/-pi,
+    # which inflates the range of any cell whose phases straddle it (see
+    # circular_range() in utils.R). Bounds may fall outside (-pi, pi].
+    rg2_indiv_phase_range <-
+      df %>% filter(condition == "red-green", freq == 2) %>% pull(phase_p) %>% circular_range()
+    rg2_indiv_phase_min <- rg2_indiv_phase_range[["min"]]
+    rg2_indiv_phase_max <- rg2_indiv_phase_range[["max"]]
     rg2_group_amplitude <-
       df %>% filter(condition == "red-green", freq == 2) %>% pull(amplitude_p)
-    ach2_indiv_phase_min <-
-      df %>% filter(condition == "achromatic", freq == 2) %>% pull(phase_p) %>% min()
-    ach2_indiv_phase_max <-
-      df %>% filter(condition == "achromatic", freq == 2) %>% pull(phase_p) %>% max()
-    by2_indiv_phase_min <-
-      df %>% filter(condition == "blue-yellow", freq == 2) %>% pull(phase_p) %>% min()
-    by2_indiv_phase_max <-
-      df %>% filter(condition == "blue-yellow", freq == 2) %>% pull(phase_p) %>% max()
+    ach2_indiv_phase_range <-
+      df %>% filter(condition == "achromatic", freq == 2) %>% pull(phase_p) %>% circular_range()
+    ach2_indiv_phase_min <- ach2_indiv_phase_range[["min"]]
+    ach2_indiv_phase_max <- ach2_indiv_phase_range[["max"]]
+    by2_indiv_phase_range <-
+      df %>% filter(condition == "blue-yellow", freq == 2) %>% pull(phase_p) %>% circular_range()
+    by2_indiv_phase_min <- by2_indiv_phase_range[["min"]]
+    by2_indiv_phase_max <- by2_indiv_phase_range[["max"]]
     
     
     # For all other variables that can't be computed, set them to zero as instructed
