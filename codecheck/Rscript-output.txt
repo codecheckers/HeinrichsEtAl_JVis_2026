@@ -1,0 +1,753 @@
+time Rscript r/main.R
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘lubridate’
+
+The following objects are masked from ‘package:base’:
+
+    date, intersect, setdiff, union
+
+New names:
+• `` -> `...1`
+File saved in this file: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/data/derivatives/hormones/tau_harmonics/melatonin_circadian_parameters.csv'
+New names:
+• `` -> `...1`
+Figure saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/figures/hormones/tau_harmonics/fig_melatonin_zero-infl.pdf'
+Figure saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/figures/hormones/tau_harmonics/fig_melatonin_tau_gof.pdf'
+Figure saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/figures/hormones/tau_harmonics/fig_melatonin_scatter-func.pdf'
+          used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
+Ncells 1916397 102.4    3707487 198.1         NA  2620826 140.0
+Vcells 3259646  24.9    8388608  64.0      16384  3966077  30.3
+Loading required package: Rcpp
+Loading 'brms' package (version 2.23.0). Useful instructions
+can be found by typing help('brms'). A more detailed introduction
+to the package is available through vignette('brms_overview').
+
+Attaching package: ‘brms’
+
+The following object is masked from ‘package:stats’:
+
+    ar
+
+This is bayesplot version 1.15.0
+- Online documentation and vignettes at mc-stan.org/bayesplot
+- bayesplot theme set to bayesplot::theme_default()
+   * Does _not_ affect other ggplot2 plots
+   * See ?bayesplot_theme_set for details on theme setting
+
+Attaching package: ‘bayesplot’
+
+The following object is masked from ‘package:brms’:
+
+    rhat
+
+Warning message:
+package ‘Rcpp’ was built under R version 4.6.1 
+File saved in this file: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/data/derivatives/log_tcs/input_data.csv'
+Fit model *achromatic_2* ...
+Estimating full model ...
+Compiling Stan program...
+Start sampling
+^[wEstimating null model ...
+Compiling Stan program...
+Start sampling
+... estimations completed.
+WAIC comparison... 
+Loo comparison... 
+BF calculations... 
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Model summary... 
+Parameter / p-values... 
+Fit model *achromatic_8* ...
+Estimating full model ...
+Compiling Stan program...
+Start sampling
+Estimating null model ...
+Compiling Stan program...
+Start sampling
+... estimations completed.
+WAIC comparison... 
+Loo comparison... 
+BF calculations... 
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Model summary... 
+Parameter / p-values... 
+Fit model *blue-yellow_2* ...
+Estimating full model ...
+Compiling Stan program...
+Start sampling
+Estimating null model ...
+Compiling Stan program...
+Start sampling
+
+... estimations completed.
+WAIC comparison... 
+Loo comparison... 
+^[wBF calculations... 
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Model summary... 
+Parameter / p-values... 
+Fit model *blue-yellow_8* ...
+Estimating full model ...
+Compiling Stan program...
+Start sampling
+Estimating null model ...
+Compiling Stan program...
+Start sampling
+... estimations completed.
+WAIC comparison... 
+Loo comparison... 
+BF calculations... 
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Model summary... 
+Parameter / p-values... 
+Fit model *red-green_2* ...
+Estimating full model ...
+Compiling Stan program...
+Start sampling
+Estimating null model ...
+Compiling Stan program...
+Start sampling
+... estimations completed.
+WAIC comparison... 
+Loo comparison... 
+BF calculations... 
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Model summary... 
+Parameter / p-values... 
+Fit model *red-green_8* ...
+Estimating full model ...
+Compiling Stan program...
+Start sampling
+Estimating null model ...
+Compiling Stan program...
+Start sampling
+... estimations completed.
+WAIC comparison... 
+Loo comparison... 
+BF calculations... 
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Model summary... 
+Parameter / p-values... 
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+File saved in this file: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/data/derivatives/log_tcs/model_summary__achromatic_2.csv'
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+File saved in this file: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/data/derivatives/log_tcs/model_summary__achromatic_8.csv'
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+File saved in this file: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/data/derivatives/log_tcs/model_summary__blue-yellow_2.csv'
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+File saved in this file: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/data/derivatives/log_tcs/model_summary__blue-yellow_8.csv'
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+File saved in this file: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/data/derivatives/log_tcs/model_summary__red-green_2.csv'
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+Computation of Marginal Likelihood: estimating marginal likelihood,
+  please wait...
+File saved in this file: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/data/derivatives/log_tcs/model_summary__red-green_8.csv'
+File saved in this file: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/data/derivatives/log_tcs/fitted_fixed_parameters.csv'
+File saved in this file: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/data/derivatives/log_tcs/fitted_all_parameters.csv'
+Text file saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/data/derivatives/log_tcs/fitted_all_parameters_meta.md'
+File saved in this file: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/data/derivatives/log_tcs/fitted_data.csv'
+There were 20 warnings (use warnings() to see them)
+Figure saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/figures/log_tcs/diagnostics/fig_ppc-obs-fit_achromatic-2.png'
+Figure saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/figures/log_tcs/diagnostics/fig_ppc-obs-fit_achromatic-8.png'
+Figure saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/figures/log_tcs/diagnostics/fig_ppc-obs-fit_blue-yellow-2.png'
+Figure saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/figures/log_tcs/diagnostics/fig_ppc-obs-fit_blue-yellow-8.png'
+Figure saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/figures/log_tcs/diagnostics/fig_ppc-obs-fit_red-green-2.png'
+Figure saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/figures/log_tcs/diagnostics/fig_ppc-obs-fit_red-green-8.png'
+Using 10 posterior draws for ppc type 'dens_overlay' by default.
+Using all posterior draws for ppc type 'error_scatter_avg' by default.
+Using all posterior draws for ppc type 'scatter_avg' by default.
+Using 10 posterior draws for ppc type 'dens_overlay' by default.
+Using all posterior draws for ppc type 'error_scatter_avg' by default.
+Using all posterior draws for ppc type 'scatter_avg' by default.
+Using 10 posterior draws for ppc type 'dens_overlay' by default.
+Using all posterior draws for ppc type 'error_scatter_avg' by default.
+Using all posterior draws for ppc type 'scatter_avg' by default.
+Using 10 posterior draws for ppc type 'dens_overlay' by default.
+Using all posterior draws for ppc type 'error_scatter_avg' by default.
+Using all posterior draws for ppc type 'scatter_avg' by default.
+Using 10 posterior draws for ppc type 'dens_overlay' by default.
+Using all posterior draws for ppc type 'error_scatter_avg' by default.
+Using all posterior draws for ppc type 'scatter_avg' by default.
+Using 10 posterior draws for ppc type 'dens_overlay' by default.
+Using all posterior draws for ppc type 'error_scatter_avg' by default.
+Using all posterior draws for ppc type 'scatter_avg' by default.
+Figure saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/figures/log_tcs/diagnostics/fig_diagnostic_scatter_scatter.png'
+Figure saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/figures/log_tcs/diagnostics/fig_diagnostic_pp-check1_pp-check1.png'
+Figure saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/figures/log_tcs/diagnostics/fig_diagnostic_pp-check2_pp-check2.png'
+Figure saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/figures/log_tcs/diagnostics/fig_diagnostic_pp-check3_pp-check3.png'
+NULL
+            used   (Mb) gc trigger   (Mb) limit (Mb)   max used    (Mb)
+Ncells   4880080  260.7   11303995  603.7         NA   11303995   603.7
+Vcells 380999281 2906.8 1244800855 9497.1      16384 1555855439 11870.3
+
+Attaching package: ‘gridExtra’
+
+The following object is masked from ‘package:dplyr’:
+
+    combine
+
+Warning message:
+package ‘gridExtra’ was built under R version 4.6.1 
+Processing results from: /Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/data/derivatives/log_tcsText file saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/tables/log_tcs/tbl_hormone_stats.tex'
+Text file saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/tex/log_tcs/tex_tau_stats.tex'
+Text file saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/tables/log_tcs/tbl_descriptives_tcs.tex'
+Text file saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/tables/log_tcs/tbl_descriptives_ntcstests.tex'
+This is a filepath /Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/data/derivatives/log_tcs/model_summary__achromatic_2.csvText file saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/tables/log_tcs/tbl_model_summary__achromatic_2.tex'
+This is a filepath /Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/data/derivatives/log_tcs/model_summary__achromatic_8.csvText file saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/tables/log_tcs/tbl_model_summary__achromatic_8.tex'
+This is a filepath /Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/data/derivatives/log_tcs/model_summary__blue-yellow_2.csvText file saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/tables/log_tcs/tbl_model_summary__blue-yellow_2.tex'
+This is a filepath /Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/data/derivatives/log_tcs/model_summary__blue-yellow_8.csvText file saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/tables/log_tcs/tbl_model_summary__blue-yellow_8.tex'
+This is a filepath /Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/data/derivatives/log_tcs/model_summary__red-green_2.csvText file saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/tables/log_tcs/tbl_model_summary__red-green_2.tex'
+This is a filepath /Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/data/derivatives/log_tcs/model_summary__red-green_8.csvText file saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/tables/log_tcs/tbl_model_summary__red-green_8.tex'
+Text file saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/tables/log_tcs/tbl_fitted_all_parameters.tex'
+Text file saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/tables/log_tcs/tbl_fitted_all_parameters_body.tex'
+Text file saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/tables/log_tcs/tbl_fitted_all_parameters_meta.tex'
+Warning message:
+In create_tbl_fitted_parameters(params_df_path = data_path, out_dir = tbl_dir) :
+  Insert the body in the table environment that is already in the latex files. Comments indicate the place of insertion.
+In summary, the obtained Bayes factors for all models were very small, ranging from \ac{logbf} values of $-13.09$ to $-11.76$.New names:
+• `` -> `...1`
+    participant_id session_id sample_number melatonin_concentration
+1              113         FD             1                  19.300
+2              113         FD             2                  12.500
+3              113         FD             3                   9.000
+4              113         FD             4                   5.800
+5              113         FD             5                   4.200
+6              113         FD             6                   2.600
+7              113         FD             7                   3.800
+8              113         FD             8                   3.500
+9              113         FD             9                   2.700
+10             113         FD            10                   2.900
+11             113         FD            11                   3.200
+12             113         FD            12                   2.900
+13             113         FD            13                   2.300
+14             113         FD            14                   2.400
+15             113         FD            15                   3.500
+16             113         FD            16                   4.100
+17             113         FD            17                  23.600
+18             202         FD             0                   5.638
+19             202         FD             1                   3.466
+20             202         FD             2                   1.967
+21             202         FD             3                   2.504
+22             202         FD             4                   1.387
+23             202         FD             5                   0.618
+24             202         FD             6                   1.226
+25             202         FD             7                   1.352
+26             202         FD             8                   1.641
+27             202         FD             9                   0.563
+28             202         FD            10                   0.812
+29             202         FD            11                   0.512
+30             202         FD            12                   1.073
+31             202         FD            13                   0.227
+32             202         FD            14                   7.202
+33             202         FD            15                  12.879
+34             202         FD            16                  14.138
+35             202         FD            17                  16.135
+36             201         FD             0                   5.149
+37             201         FD             1                   1.847
+38             201         FD             2                   0.836
+39             201         FD             3                   0.200
+40             201         FD             4                   0.200
+41             201         FD             5                   0.100
+42             201         FD             6                   0.200
+43             201         FD             7                   0.100
+44             201         FD             8                   0.100
+45             201         FD             9                   0.100
+46             201         FD            10                   0.100
+47             201         FD            11                   0.100
+48             201         FD            12                   0.000
+49             201         FD            13                   0.000
+50             201         FD            14                   0.100
+51             201         FD            15                  11.082
+52             201         FD            16                  16.541
+53             201         FD            17                  26.529
+54             205         FD             0                   6.221
+55             205         FD             1                   4.746
+56             205         FD             2                   3.053
+57             205         FD             3                   1.733
+58             205         FD             4                   1.475
+59             205         FD             5                   0.498
+60             205         FD             6                   0.298
+61             205         FD             7                   0.100
+62             205         FD             8                   0.100
+63             205         FD             9                   0.100
+64             205         FD            10                   0.100
+65             205         FD            11                   0.135
+66             205         FD            12                   0.232
+67             205         FD            13                   0.000
+68             205         FD            14                   0.131
+69             205         FD            15                   0.688
+70             205         FD            16                   0.787
+71             205         FD            17                   5.586
+72             204         FD             0                  14.824
+73             204         FD             1                  13.314
+74             204         FD             2                   6.812
+75             204         FD             3                   3.531
+76             204         FD             4                   3.876
+77             204         FD             5                   2.056
+78             204         FD             6                   1.655
+79             204         FD             7                   1.280
+80             204         FD             8                   1.363
+81             204         FD             9                   0.309
+82             204         FD            10                   0.337
+83             204         FD            11                   0.770
+84             204         FD            12                   0.872
+85             204         FD            13                   0.200
+86             204         FD            14                   0.200
+87             204         FD            15                   1.661
+88             204         FD            16                   9.423
+89             204         FD            17                  19.846
+90             206         FD             0                   8.860
+91             206         FD             1                   5.331
+92             206         FD             2                   3.525
+93             206         FD             3                   2.181
+94             206         FD             4                   1.331
+95             206         FD             5                   1.104
+96             206         FD             6                   1.700
+97             206         FD             7                   1.673
+98             206         FD             8                   0.000
+99             206         FD             9                   1.100
+100            206         FD            10                   0.831
+101            206         FD            11                   1.124
+102            206         FD            12                   1.297
+103            206         FD            13                   0.654
+104            206         FD            14                   3.225
+105            206         FD            15                   8.746
+106            206         FD            16                  10.868
+107            206         FD            17                  18.464
+108            207         FD             0                  11.694
+109            207         FD             1                   9.326
+110            207         FD             2                   6.894
+111            207         FD             3                   4.398
+112            207         FD             4                   4.116
+113            207         FD             5                   2.858
+114            207         FD             6                   2.671
+115            207         FD             7                   2.228
+116            207         FD             8                   2.241
+117            207         FD             9                   1.714
+118            207         FD            10                   2.436
+119            207         FD            11                   3.122
+120            207         FD            12                   3.400
+121            207         FD            13                   1.840
+122            207         FD            14                   9.203
+123            207         FD            15                  24.352
+124            207         FD            16                  31.513
+125            207         FD            17                  33.607
+126            209         FD             0                   5.103
+127            209         FD             1                   3.739
+128            209         FD             2                   1.353
+129            209         FD             3                   1.248
+130            209         FD             4                   1.066
+131            209         FD             5                   0.397
+132            209         FD             6                   0.128
+133            209         FD             7                   0.344
+134            209         FD             8                   0.241
+135            209         FD             9                   0.252
+136            209         FD            10                   0.235
+137            209         FD            11                   0.514
+138            209         FD            12                   0.512
+139            209         FD            13                   0.100
+140            209         FD            14                   0.237
+141            209         FD            15                   4.410
+142            209         FD            16                   8.693
+143            209         FD            17                  12.589
+144            211         FD             0                  14.641
+145            211         FD             1                   4.772
+146            211         FD             2                   3.508
+147            211         FD             3                   1.852
+148            211         FD             4                   1.151
+149            211         FD             5                   1.177
+150            211         FD             6                   0.852
+151            211         FD             7                   0.539
+152            211         FD             8                   0.443
+153            211         FD             9                   0.307
+154            211         FD            10                   0.651
+155            211         FD            11                   0.000
+156            211         FD            12                   0.000
+157            211         FD            13                   0.000
+158            211         FD            14                   0.231
+159            211         FD            15                   0.112
+160            211         FD            16                   0.100
+161            211         FD            17                   2.326
+162            210         FD             0                   1.713
+163            210         FD             1                   0.850
+164            210         FD             2                   0.721
+165            210         FD             3                   0.730
+166            210         FD             4                   0.560
+167            210         FD             5                   0.747
+168            210         FD             6                   1.254
+169            210         FD             7                   1.162
+170            210         FD             8                   0.658
+171            210         FD             9                   0.572
+172            210         FD            10                   1.330
+173            210         FD            11                   0.965
+174            210         FD            12                   1.073
+175            210         FD            13                   0.666
+176            210         FD            14                   4.208
+177            210         FD            15                   6.384
+178            210         FD            16                   7.554
+179            210         FD            17                   7.051
+180            213         FD             0                   4.583
+181            213         FD             1                   4.206
+182            213         FD             2                   2.789
+183            213         FD             3                   2.217
+184            213         FD             4                   1.868
+185            213         FD             5                   0.939
+186            213         FD             6                   1.630
+187            213         FD             7                   1.250
+188            213         FD             8                   0.578
+189            213         FD             9                   0.374
+190            213         FD            10                   0.830
+191            213         FD            11                   0.505
+192            213         FD            12                   0.000
+193            213         FD            13                   0.438
+194            213         FD            14                   2.521
+195            213         FD            15                   7.424
+196            213         FD            16                   9.611
+197            213         FD            17                  12.654
+198            212         FD             0                   9.266
+199            212         FD             1                   6.431
+200            212         FD             2                   3.529
+201            212         FD             3                   1.351
+202            212         FD             4                   1.049
+203            212         FD             5                   0.426
+204            212         FD             6                   0.760
+205            212         FD             7                   0.327
+206            212         FD             8                   0.416
+207            212         FD             9                   0.397
+208            212         FD            10                   0.297
+209            212         FD            11                   0.000
+210            212         FD            12                   0.000
+211            212         FD            13                   0.000
+212            212         FD            14                   1.256
+213            212         FD            15                   7.316
+214            212         FD            17                  12.592
+215            212         FD            16                  15.564
+    hours_after_wakeup standard_clocktime   standard_datetime
+1            0.5833333           07:35:00 2024-01-01 07:35:00
+2            1.2500000           08:15:00 2024-01-01 08:15:00
+3            2.0000000           09:00:00 2024-01-01 09:00:00
+4            2.7500000           09:45:00 2024-01-01 09:45:00
+5            3.5000000           10:30:00 2024-01-01 10:30:00
+6            5.0000000           12:00:00 2024-01-01 12:00:00
+7            5.7500000           12:45:00 2024-01-01 12:45:00
+8            6.5000000           13:30:00 2024-01-01 13:30:00
+9            7.2500000           14:15:00 2024-01-01 14:15:00
+10           8.7500000           15:45:00 2024-01-01 15:45:00
+11           9.5000000           16:30:00 2024-01-01 16:30:00
+12          10.2500000           17:15:00 2024-01-01 17:15:00
+13          11.0000000           18:00:00 2024-01-01 18:00:00
+14          12.5000000           19:30:00 2024-01-01 19:30:00
+15          13.2500000           20:15:00 2024-01-01 20:15:00
+16          14.0000000           21:00:00 2024-01-01 21:00:00
+17          14.7500000           21:45:00 2024-01-01 21:45:00
+18           0.0000000           07:00:00 2024-01-01 07:00:00
+19           0.5833333           07:35:00 2024-01-01 07:35:00
+20           1.2500000           08:15:00 2024-01-01 08:15:00
+21           2.0000000           09:00:00 2024-01-01 09:00:00
+22           2.7500000           09:45:00 2024-01-01 09:45:00
+23           3.5000000           10:30:00 2024-01-01 10:30:00
+24           5.0000000           12:00:00 2024-01-01 12:00:00
+25           5.7500000           12:45:00 2024-01-01 12:45:00
+26           6.5000000           13:30:00 2024-01-01 13:30:00
+27           7.2500000           14:15:00 2024-01-01 14:15:00
+28           8.7500000           15:45:00 2024-01-01 15:45:00
+29           9.5000000           16:30:00 2024-01-01 16:30:00
+30          10.2500000           17:15:00 2024-01-01 17:15:00
+31          11.0000000           18:00:00 2024-01-01 18:00:00
+32          12.5000000           19:30:00 2024-01-01 19:30:00
+33          13.2500000           20:15:00 2024-01-01 20:15:00
+34          14.0000000           21:00:00 2024-01-01 21:00:00
+35          14.7500000           21:45:00 2024-01-01 21:45:00
+36           0.0000000           07:00:00 2024-01-01 07:00:00
+37           0.5833333           07:35:00 2024-01-01 07:35:00
+38           1.2500000           08:15:00 2024-01-01 08:15:00
+39           2.0000000           09:00:00 2024-01-01 09:00:00
+40           2.7500000           09:45:00 2024-01-01 09:45:00
+41           3.5000000           10:30:00 2024-01-01 10:30:00
+42           5.0000000           12:00:00 2024-01-01 12:00:00
+43           5.7500000           12:45:00 2024-01-01 12:45:00
+44           6.5000000           13:30:00 2024-01-01 13:30:00
+45           7.2500000           14:15:00 2024-01-01 14:15:00
+46           8.7500000           15:45:00 2024-01-01 15:45:00
+47           9.5000000           16:30:00 2024-01-01 16:30:00
+48          10.2500000           17:15:00 2024-01-01 17:15:00
+49          11.0000000           18:00:00 2024-01-01 18:00:00
+50          12.5000000           19:30:00 2024-01-01 19:30:00
+51          13.2500000           20:15:00 2024-01-01 20:15:00
+52          14.0000000           21:00:00 2024-01-01 21:00:00
+53          14.7500000           21:45:00 2024-01-01 21:45:00
+54           0.0000000           07:00:00 2024-01-01 07:00:00
+55           0.5833333           07:35:00 2024-01-01 07:35:00
+56           1.2500000           08:15:00 2024-01-01 08:15:00
+57           2.0000000           09:00:00 2024-01-01 09:00:00
+58           2.7500000           09:45:00 2024-01-01 09:45:00
+59           3.5000000           10:30:00 2024-01-01 10:30:00
+60           5.0000000           12:00:00 2024-01-01 12:00:00
+61           5.7500000           12:45:00 2024-01-01 12:45:00
+62           6.5000000           13:30:00 2024-01-01 13:30:00
+63           7.2500000           14:15:00 2024-01-01 14:15:00
+64           8.7500000           15:45:00 2024-01-01 15:45:00
+65           9.5000000           16:30:00 2024-01-01 16:30:00
+66          10.2500000           17:15:00 2024-01-01 17:15:00
+67          11.0000000           18:00:00 2024-01-01 18:00:00
+68          12.5000000           19:30:00 2024-01-01 19:30:00
+69          13.2500000           20:15:00 2024-01-01 20:15:00
+70          14.0000000           21:00:00 2024-01-01 21:00:00
+71          14.7500000           21:45:00 2024-01-01 21:45:00
+72           0.0000000           07:00:00 2024-01-01 07:00:00
+73           0.5833333           07:35:00 2024-01-01 07:35:00
+74           1.2500000           08:15:00 2024-01-01 08:15:00
+75           2.0000000           09:00:00 2024-01-01 09:00:00
+76           2.7500000           09:45:00 2024-01-01 09:45:00
+77           3.5000000           10:30:00 2024-01-01 10:30:00
+78           5.0000000           12:00:00 2024-01-01 12:00:00
+79           5.7500000           12:45:00 2024-01-01 12:45:00
+80           6.5000000           13:30:00 2024-01-01 13:30:00
+81           7.2500000           14:15:00 2024-01-01 14:15:00
+82           8.7500000           15:45:00 2024-01-01 15:45:00
+83           9.5000000           16:30:00 2024-01-01 16:30:00
+84          10.2500000           17:15:00 2024-01-01 17:15:00
+85          11.0000000           18:00:00 2024-01-01 18:00:00
+86          12.5000000           19:30:00 2024-01-01 19:30:00
+87          13.2500000           20:15:00 2024-01-01 20:15:00
+88          14.0000000           21:00:00 2024-01-01 21:00:00
+89          14.7500000           21:45:00 2024-01-01 21:45:00
+90           0.0000000           07:00:00 2024-01-01 07:00:00
+91           0.5833333           07:35:00 2024-01-01 07:35:00
+92           1.2500000           08:15:00 2024-01-01 08:15:00
+93           2.0000000           09:00:00 2024-01-01 09:00:00
+94           2.7500000           09:45:00 2024-01-01 09:45:00
+95           3.5000000           10:30:00 2024-01-01 10:30:00
+96           5.0000000           12:00:00 2024-01-01 12:00:00
+97           5.7500000           12:45:00 2024-01-01 12:45:00
+98           6.5000000           13:30:00 2024-01-01 13:30:00
+99           7.2500000           14:15:00 2024-01-01 14:15:00
+100          8.7500000           15:45:00 2024-01-01 15:45:00
+101          9.5000000           16:30:00 2024-01-01 16:30:00
+102         10.2500000           17:15:00 2024-01-01 17:15:00
+103         11.0000000           18:00:00 2024-01-01 18:00:00
+104         12.5000000           19:30:00 2024-01-01 19:30:00
+105         13.2500000           20:15:00 2024-01-01 20:15:00
+106         14.0000000           21:00:00 2024-01-01 21:00:00
+107         14.7500000           21:45:00 2024-01-01 21:45:00
+108          0.0000000           07:00:00 2024-01-01 07:00:00
+109          0.5833333           07:35:00 2024-01-01 07:35:00
+110          1.2500000           08:15:00 2024-01-01 08:15:00
+111          2.0000000           09:00:00 2024-01-01 09:00:00
+112          2.7500000           09:45:00 2024-01-01 09:45:00
+113          3.5000000           10:30:00 2024-01-01 10:30:00
+114          5.0000000           12:00:00 2024-01-01 12:00:00
+115          5.7500000           12:45:00 2024-01-01 12:45:00
+116          6.5000000           13:30:00 2024-01-01 13:30:00
+117          7.2500000           14:15:00 2024-01-01 14:15:00
+118          8.7500000           15:45:00 2024-01-01 15:45:00
+119          9.5000000           16:30:00 2024-01-01 16:30:00
+120         10.2500000           17:15:00 2024-01-01 17:15:00
+121         11.0000000           18:00:00 2024-01-01 18:00:00
+122         12.5000000           19:30:00 2024-01-01 19:30:00
+123         13.2500000           20:15:00 2024-01-01 20:15:00
+124         14.0000000           21:00:00 2024-01-01 21:00:00
+125         14.7500000           21:45:00 2024-01-01 21:45:00
+126          0.0000000           07:00:00 2024-01-01 07:00:00
+127          0.5833333           07:35:00 2024-01-01 07:35:00
+128          1.2500000           08:15:00 2024-01-01 08:15:00
+129          2.0000000           09:00:00 2024-01-01 09:00:00
+130          2.7500000           09:45:00 2024-01-01 09:45:00
+131          3.5000000           10:30:00 2024-01-01 10:30:00
+132          5.0000000           12:00:00 2024-01-01 12:00:00
+133          5.7500000           12:45:00 2024-01-01 12:45:00
+134          6.5000000           13:30:00 2024-01-01 13:30:00
+135          7.2500000           14:15:00 2024-01-01 14:15:00
+136          8.7500000           15:45:00 2024-01-01 15:45:00
+137          9.5000000           16:30:00 2024-01-01 16:30:00
+138         10.2500000           17:15:00 2024-01-01 17:15:00
+139         11.0000000           18:00:00 2024-01-01 18:00:00
+140         12.5000000           19:30:00 2024-01-01 19:30:00
+141         13.2500000           20:15:00 2024-01-01 20:15:00
+142         14.0000000           21:00:00 2024-01-01 21:00:00
+143         14.7500000           21:45:00 2024-01-01 21:45:00
+144          0.0000000           07:00:00 2024-01-01 07:00:00
+145          0.5833333           07:35:00 2024-01-01 07:35:00
+146          1.2500000           08:15:00 2024-01-01 08:15:00
+147          2.0000000           09:00:00 2024-01-01 09:00:00
+148          2.7500000           09:45:00 2024-01-01 09:45:00
+149          3.5000000           10:30:00 2024-01-01 10:30:00
+150          5.0000000           12:00:00 2024-01-01 12:00:00
+151          5.7500000           12:45:00 2024-01-01 12:45:00
+152          6.5000000           13:30:00 2024-01-01 13:30:00
+153          7.2500000           14:15:00 2024-01-01 14:15:00
+154          8.7500000           15:45:00 2024-01-01 15:45:00
+155          9.5000000           16:30:00 2024-01-01 16:30:00
+156         10.2500000           17:15:00 2024-01-01 17:15:00
+157         11.0000000           18:00:00 2024-01-01 18:00:00
+158         12.5000000           19:30:00 2024-01-01 19:30:00
+159         13.2500000           20:15:00 2024-01-01 20:15:00
+160         14.0000000           21:00:00 2024-01-01 21:00:00
+161         14.7500000           21:45:00 2024-01-01 21:45:00
+162          0.0000000           07:00:00 2024-01-01 07:00:00
+163          0.5833333           07:35:00 2024-01-01 07:35:00
+164          1.2500000           08:15:00 2024-01-01 08:15:00
+165          2.0000000           09:00:00 2024-01-01 09:00:00
+166          2.7500000           09:45:00 2024-01-01 09:45:00
+167          3.5000000           10:30:00 2024-01-01 10:30:00
+168          5.0000000           12:00:00 2024-01-01 12:00:00
+169          5.7500000           12:45:00 2024-01-01 12:45:00
+170          6.5000000           13:30:00 2024-01-01 13:30:00
+171          7.2500000           14:15:00 2024-01-01 14:15:00
+172          8.7500000           15:45:00 2024-01-01 15:45:00
+173          9.5000000           16:30:00 2024-01-01 16:30:00
+174         10.2500000           17:15:00 2024-01-01 17:15:00
+175         11.0000000           18:00:00 2024-01-01 18:00:00
+176         12.5000000           19:30:00 2024-01-01 19:30:00
+177         13.2500000           20:15:00 2024-01-01 20:15:00
+178         14.0000000           21:00:00 2024-01-01 21:00:00
+179         14.7500000           21:45:00 2024-01-01 21:45:00
+180          0.0000000           07:00:00 2024-01-01 07:00:00
+181          0.5833333           07:35:00 2024-01-01 07:35:00
+182          1.2500000           08:15:00 2024-01-01 08:15:00
+183          2.0000000           09:00:00 2024-01-01 09:00:00
+184          2.7500000           09:45:00 2024-01-01 09:45:00
+185          3.5000000           10:30:00 2024-01-01 10:30:00
+186          5.0000000           12:00:00 2024-01-01 12:00:00
+187          5.7500000           12:45:00 2024-01-01 12:45:00
+188          6.5000000           13:30:00 2024-01-01 13:30:00
+189          7.2500000           14:15:00 2024-01-01 14:15:00
+190          8.7500000           15:45:00 2024-01-01 15:45:00
+191          9.5000000           16:30:00 2024-01-01 16:30:00
+192         10.2500000           17:15:00 2024-01-01 17:15:00
+193         11.0000000           18:00:00 2024-01-01 18:00:00
+194         12.5000000           19:30:00 2024-01-01 19:30:00
+195         13.2500000           20:15:00 2024-01-01 20:15:00
+196         14.0000000           21:00:00 2024-01-01 21:00:00
+197         14.7500000           21:45:00 2024-01-01 21:45:00
+198          0.0000000           07:00:00 2024-01-01 07:00:00
+199          0.5833333           07:35:00 2024-01-01 07:35:00
+200          1.2500000           08:15:00 2024-01-01 08:15:00
+201          2.0000000           09:00:00 2024-01-01 09:00:00
+202          2.7500000           09:45:00 2024-01-01 09:45:00
+203          3.5000000           10:30:00 2024-01-01 10:30:00
+204          5.0000000           12:00:00 2024-01-01 12:00:00
+205          5.7500000           12:45:00 2024-01-01 12:45:00
+206          6.5000000           13:30:00 2024-01-01 13:30:00
+207          7.2500000           14:15:00 2024-01-01 14:15:00
+208          8.7500000           15:45:00 2024-01-01 15:45:00
+209          9.5000000           16:30:00 2024-01-01 16:30:00
+210         10.2500000           17:15:00 2024-01-01 17:15:00
+211         11.0000000           18:00:00 2024-01-01 18:00:00
+212         12.5000000           19:30:00 2024-01-01 19:30:00
+213         13.2500000           20:15:00 2024-01-01 20:15:00
+214         14.0000000           21:00:00 2024-01-01 21:00:00
+215         14.7500000           21:45:00 2024-01-01 21:45:00
+Text file saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/tex/log_tcs/tex_descriptives_melatonin.tex'
+New names:
+• `` -> `...1`
+Rows: 845 Columns: 14
+── Column specification ─────────────────────────────────────────────────────────────Delimiter: ","
+chr  (4): sample_id, study_id, session_id, source
+dbl  (7): ...1, participant_id, sample_number, melatonin_concentration, cort...
+dttm (2): timestamp, standard_datetime
+time (1): standard_clocktime
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+File saved in:  /Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/tex/log_tcs/tex_inference_melatonin.tex`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by participant_id and condition.
+ℹ Output is grouped by participant_id.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(participant_id, condition))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by participant_id, block, and condition.
+ℹ Output is grouped by participant_id and block.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(participant_id, block, condition))` for per-operation
+  grouping (`?dplyr::dplyr_by`) instead.
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by participant_id, condition, freq, and block.
+ℹ Output is grouped by participant_id, condition, and freq.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(participant_id, condition, freq, block))` for per-operation
+  grouping (`?dplyr::dplyr_by`) instead.
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by condition and freq.
+ℹ Output is grouped by condition.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(condition, freq))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+Text file saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/tex/log_tcs/tex_descriptives_tcs.tex'
+Text file saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/tex/log_tcs/tex_inference_tcs.tex'
+Text file saved in: '/Users/sje30/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/results/tex/tex_methods_sample.tex'
+Warning message:
+The following named parsers don't match the column names: demo_dob 
+Rscript r/main.R  1865.78s user 102.98s system 104% cpu 31:18.80 total
+(base) dsd ~/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/rscripts % 
+(base) dsd ~/proj/2020/codecheckers/2026/HeinrichsEtAl_JVis_2026/rscripts % 
