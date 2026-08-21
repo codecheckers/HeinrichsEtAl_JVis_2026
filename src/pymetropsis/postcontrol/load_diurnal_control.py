@@ -135,7 +135,8 @@ def _latex_tcs_wide(pt: pd.DataFrame) -> str:
         r"\centering",
         r"\caption{Summary statistics of contrast sensitivity per participant, condition, "
         r"context, and temporal frequency (mean with std.\ dev.\ in parentheses). "
-        r"Values reflect all trials pooled across experimental blocks.}",
+        r"Values reflect per-staircase contrast sensitivity estimates, pooled across "
+        r"experimental blocks.}",
         r"\label{tab:tcs_diurnal_control}",
         r"%\small",
         r"%\setlength{\tabcolsep}{5pt}",
@@ -173,7 +174,8 @@ def _latex_tcs_tidy(pivot: pd.DataFrame) -> str:
         r"\centering",
         r"\caption{Summary statistics of contrast sensitivity per participant, condition, "
         r"temporal frequency, and context (mean with std.\ dev.\ in parentheses). "
-        r"Values reflect all trials pooled across experimental blocks.}",
+        r"Values reflect per-staircase contrast sensitivity estimates, pooled across "
+        r"experimental blocks.}",
         r"\label{tab:tcs_diurnal_control_tidy}",
         r"%\small",
         r"%\setlength{\tabcolsep}{5pt}",

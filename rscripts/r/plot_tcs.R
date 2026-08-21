@@ -274,12 +274,12 @@ create_scatter_sine_plot <- function(df,
       # Point size
       stroke = 0.5          # Edge width
     ) +
-    # Sinus curve
+    # Cosine curve
     ggplot2::stat_function(
       # fun = function(x)
-      #   est_mesor + est_amplitude * sin((2 * pi * x / tau) + est_phase),
+      #   est_mesor + est_amplitude * cos((2 * pi * x / tau) + est_phase),
       fun = function(x)
-        est_mesor + est_amplitude * sin((2 * pi * x / tau) + est_phase),
+        est_mesor + est_amplitude * cos((2 * pi * x / tau) + est_phase),
       color = "#30476B",
       linetype = "dashed"
     ) +

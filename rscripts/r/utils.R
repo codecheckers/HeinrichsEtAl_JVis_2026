@@ -209,12 +209,20 @@ calc_amplitude <- function(sine_estimate, cosine_estimate){
   return(ampl)
 }
 
-#' Calculate sinus phase from a and b
+#' Calculate cosinor phase from the sine and cosine coefficients
 #'
-#' @param cosine_estimate (num) a 
-#' @param sine_estimate (num) b
+#' @description Returns phi of the cosinor form y = M + A * cos(omega * t + phi),
+#'   NOT the phase of a sine form. Expanding the cosinor form against the
+#'   regression y = M + alpha * sin(omega * t) + beta * cos(omega * t) gives
+#'   sine_estimate = -A sin(phi) and cosine_estimate = A cos(phi), hence phi = atan2(-sine_estimate, cosine_estimate).
+#'   The sine form y = M + A * sin(omega * t + psi) would instead give
+#'   psi = atan2(beta, alpha) = phi + pi/2. Use this function throughout so that
+#'   phases are on one convention; see [phase_to_peak_time()] for the time of peak.
 #'
-#' @return phase (num)
+#' @param cosine_estimate (num) beta, the coefficient on `cosine_component`
+#' @param sine_estimate (num) alpha, the coefficient on `sine_component`
+#'
+#' @return phase (num) phi in radians, in (-pi, pi]
 #' @export
 #'
 calc_phase <- function(cosine_estimate, sine_estimate){
@@ -222,33 +230,71 @@ calc_phase <- function(cosine_estimate, sine_estimate){
   return(theta)
 }
 
-#' Calculate decimal time from angle (e.g. phase)
-#' 
-#' @description Pi would be 12 hours, 2pi would be 24 hours, -pi would be 0 hours
+#' Calculate time of peak from a cosinor phase
 #'
-#' @param theta (num) phase in radians
-#' @param tau (num) period, defaults to 24
+#' @description The cosinor component A * cos(harmonic * omega * t + theta), with
+#'   omega = 2 * pi / tau, is maximal where its argument is a multiple of 2 * pi,
+#'   i.e. at t = -theta / (harmonic * omega). The returned time is reduced onto
+#'   one cycle of the component, [0, tau / harmonic).
 #'
-#' @returns
-#' 
-phase_to_decimal_time <- function(theta, tau=24){
-  decimal_time <- ((theta %% (2 * pi) * tau )/ (2 * pi)) 
+#'   Note the sign flip: the peak sits at the NEGATED phase. Feeding a phase
+#'   straight through the scaling alone would return the trough.
+#'
+#'   The returned time is on the same origin as the time variable the model was
+#'   fitted on. For the melatonin fits that variable is `hours_after_wakeup`, so
+#'   the result is hours after wakeup, not a clock time.
+#'
+#' @param theta (num) phase in radians, as returned by `calc_phase()`
+#' @param tau (num) period of the fundamental in hours, defaults to 24
+#' @param harmonic (num) harmonic number the phase belongs to; 1 for the
+#'   fundamental, 2 for the second harmonic
+#'
+#' @returns (num) time of peak in hours, in [0, tau / harmonic)
+#' @export
+#'
+#' @examples
+#' # participant 113: phi = 1.23, tau = 24.48
+#' # phase_to_decimal_time(1.23, tau = 24.48)  # 19.70, the melatonin peak
+#'
+phase_to_decimal_time <- function(theta, tau=24, harmonic=1){
+  omega <- harmonic * 2 * pi / tau
+  decimal_time <- (-theta / omega) %% (tau / harmonic)
   return(decimal_time)
 }
 
-#' Calculate HH:MM from angle (e.g. phase)
-#' 
-#' @description #' Pi would be 12 hours, 2pi would be 24 hours, -pi would be 0 hours
-#' 
+#' Convert an angular difference to hours
 #'
-#' @param theta (num) phase in radians
-#' @param tau (num) period, defaults to 24
+#' @description Scales radians to hours by tau / (2 * pi), with no sign flip and
+#'   no reduction onto a cycle. Use for differences between phases, such as an SD
+#'   across participants or a shift between conditions, where the quantity is a
+#'   spread rather than a position in the cycle. For positions use
+#'   [phase_to_decimal_time()].
 #'
-#' @returns 
+#' @param theta (num) angular difference in radians
+#' @param tau (num) period in hours, defaults to 24
+#'
+#' @returns (num) hours
 #' @export
 #'
-phase_to_hm <- function(theta, tau=24){
-  decimal_t <- phase_to_decimal_time(theta=theta, tau=tau)
+radians_to_hours <- function(theta, tau=24){
+  theta * tau / (2 * pi)
+}
+
+#' Calculate HH:MM of the peak from a cosinor phase
+#'
+#' @description Formats [phase_to_decimal_time()] as HH:MM. The result is an
+#'   elapsed time on the model's own time origin, so it only reads as a clock
+#'   time if the model was fitted on clock hours.
+#'
+#' @param theta (num) phase in radians, as returned by `calc_phase()`
+#' @param tau (num) period of the fundamental in hours, defaults to 24
+#' @param harmonic (num) harmonic number the phase belongs to
+#'
+#' @returns (str) time of peak as "HH:MM"
+#' @export
+#'
+phase_to_hm <- function(theta, tau=24, harmonic=1){
+  decimal_t <- phase_to_decimal_time(theta=theta, tau=tau, harmonic=harmonic)
   hhmm <- decimal_to_hm(decimal_time=decimal_t)
   return(hhmm)
 }
@@ -273,17 +319,102 @@ decimal_to_hm <- function(decimal_time, origin = "1970-01-01"){
 
 #' Wrap phase to positive values
 #' 
-#' @description Converts negative angles to equivalent positive angles in [0, 2pi]
+#' @description Converts angles to equivalent positive angles in [0, 2pi)
 #'
-#' @param theta 
+#' @param theta (num) angle in radians
 #'
-#' @returns
+#' @returns (num) angle in radians, wrapped to [0, 2pi)
 #' @export
 #'
 #' @examples
+#' # wrap_phase(-1.5)  # 4.783, not 1.571
 wrap_phase <- function(theta){
-  wrapped_phase <- ifelse(theta < 0, theta %% 2 * pi, theta)
+  # Parenthesise 2 * pi: %% binds tighter than * in R, so `theta %% 2 * pi`
+  # would evaluate as `(theta %% 2) * pi`
+  wrapped_phase <- theta %% (2 * pi)
   return(wrapped_phase)
+}
+
+#' Wrap angles onto the branch centred on a reference angle
+#'
+#' @description Maps each angle to the equivalent angle within (center - pi,
+#'   center + pi]. Use before taking `min()`/`max()` of a set of phases, so that
+#'   the reported range is not split by an arbitrary branch cut at 0 or +/-pi.
+#'
+#' @param theta (num) angles in radians
+#' @param center (num) reference angle in radians, e.g. the circular mean
+#'
+#' @returns (num) angles in radians
+#' @export
+#'
+wrap_phase_around <- function(theta, center){
+  center + ((theta - center + pi) %% (2 * pi)) - pi
+}
+
+#' Circular mean of a set of angles
+#'
+#' @description The arithmetic mean is not meaningful for angles that straddle a
+#'   branch cut (e.g. phases near +/-pi): it can fall outside the observed range.
+#'   This resolves the angles into unit vectors and averages those instead.
+#'
+#' @param theta (num) angles in radians
+#' @param na.rm (bool) drop missing values
+#'
+#' @returns (num) mean angle in radians, in (-pi, pi]
+#' @export
+#'
+circular_mean <- function(theta, na.rm = FALSE){
+  if (na.rm) theta <- theta[!is.na(theta)]
+  atan2(mean(sin(theta)), mean(cos(theta)))
+}
+
+#' Circular standard deviation of a set of angles
+#'
+#' @description Computed as sqrt(-2 * log(R)), with R the mean resultant length.
+#'   Unlike the linear `sd()`, this does not depend on where the branch cut
+#'   falls. It approaches the linear SD for tightly clustered angles and
+#'   diverges as the angles approach a uniform spread.
+#'
+#' @param theta (num) angles in radians
+#' @param na.rm (bool) drop missing values
+#'
+#' @returns (num) circular SD in radians
+#' @export
+#'
+circular_sd <- function(theta, na.rm = FALSE){
+  if (na.rm) theta <- theta[!is.na(theta)]
+  resultant_length <- sqrt(mean(sin(theta)) ^ 2 + mean(cos(theta)) ^ 2)
+  sqrt(-2 * log(resultant_length))
+}
+
+#' Range of a set of angles, taken on the circle
+#'
+#' @description `min()`/`max()` applied to angles directly are split by the
+#'   branch cut at +/-pi: a cluster straddling it is reported as spanning almost
+#'   the whole circle. This wraps the angles onto the branch centred on their
+#'   circular mean first, so the range covers the arc the angles actually occupy.
+#'   The returned bounds may therefore fall outside (-pi, pi].
+#'
+#'   This is exact for clustered angles (the case where a range is interpretable
+#'   at all) and matches the smallest containing arc on every cell of the
+#'   melatonin and tCS data. It is not the smallest containing arc in general:
+#'   for near-uniform angles the circular mean is unstable and the span can be
+#'   overstated. Compute the largest-gap arc instead if such data ever needs a
+#'   reported range.
+#'
+#' @param theta (num) angles in radians
+#' @param na.rm (bool) drop missing values
+#'
+#' @returns (num) named vector with elements `min` and `max`, in radians
+#' @export
+#'
+#' @examples
+#' # circular_range(c(3.0, -3.0))  # min -3.28, max -3.00: a span of 0.28,
+#' #                               # where min/max would report 6.00
+circular_range <- function(theta, na.rm = FALSE){
+  if (na.rm) theta <- theta[!is.na(theta)]
+  branch <- wrap_phase_around(theta, center = circular_mean(theta))
+  c(min = min(branch), max = max(branch))
 }
 
 #' Indicates whether formula specifies multiple levels

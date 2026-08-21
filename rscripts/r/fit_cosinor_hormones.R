@@ -28,6 +28,8 @@ prepare_hormone_data <- function(data_path) {
                    .data$session_id,
                    .data$timestamp_number) %>%
     dplyr::filter(.data$session_id == "FD") %>%
+    # Exclude participant 200 from all downstream fits and figures
+    dplyr::filter(.data$participant_id != 200) %>%
     # Start of FD was exactly 1 h after wake time
     dplyr::mutate(hours_since_start = .data$hours_after_wakeup - 1) %>%
     dplyr::mutate(participant_id = as.factor(.data$participant_id))
@@ -321,8 +323,8 @@ create_gof_figure <- function(model_results, out_dir = NULL) {
 #' @export
 #'
 create_plot_r2_against_tau <- function(gof_df, optimal_tau, pid) {
-  label_text <- paste0('"Optimal " * tau * " = ', round(optimal_tau, 2), '"')
-  title_text <- substitute("R-squared vs. period " * tau * " for " * value, list(value = as.character(pid)))
+  label_text <- substitute("Optimal " * tau * " = " * value, list(value = round(optimal_tau, 2)))
+  title_text <- substitute("R-squared vs. period " * tau * " for participant " * value, list(value = as.character(pid)))
   #print(pid)
   p <- ggplot2::ggplot(gof_df, ggplot2::aes(x = tau, y = rsquared)) +
     ggplot2::geom_point(
@@ -331,24 +333,27 @@ create_plot_r2_against_tau <- function(gof_df, optimal_tau, pid) {
       size = 1,
       stroke = 0.5
     ) +
-    #ggplot2::geom_line(color = "#30476B", size = 1) +
+    #ggplot2::geom_line(color = "#30476B", linewidth = 1) +
     ggplot2::geom_vline(
       xintercept = optimal_tau,
       color = "#30476B",
       linetype = "dashed",
-      size = 0.8
+      linewidth = 0.8
     ) +
     ggplot2::annotate(
       geom = "text",
       x = optimal_tau,
-      y = max(gof_df$rsquared, na.rm = TRUE) * 0.9,
-      # Position text near the top
-      label = label_text,
+      y = min(gof_df$rsquared, na.rm = TRUE),
+      # Position text at the bottom of the line
+      # as.expression() is required from ggplot2 4.0 on: layer aesthetics are
+      # validated through vctrs, which rejects the bare call that substitute()
+      # returns. An expression vector still renders as plotmath.
+      label = as.expression(label_text),
       color = "#30476B",
       hjust = -0.1,
+      vjust = 0,
       # Adjust horizontal position of text
-      size = 5,
-      parse = TRUE
+      size = 5
     ) +
     ggplot2::labs(
       title = title_text,
@@ -477,7 +482,7 @@ add_scatter_plot_design <- function(p,
                                     participant_id = NULL,
                                     tau = NULL) {
   p <- p +
-    labs(y = "Salivary melatonin concentr. [pg/ml]", x = "Time since wake up")
+    labs(y = "Salivary melatonin\\concentration [pg/ml]", x = "Hours since wake-up [h]")
   
   p <- p +
     # Bayesplot-inspired theme
@@ -515,8 +520,8 @@ add_scatter_plot_design <- function(p,
       "Salivary melatonin of participant " * pid * " fitted with " * italic(tau) * " = " * value,
       list(value = round(tau, 2), pid = as.character(unique(participant_id)))
     ),
-    x = "Time since wake up [hours]",
-    y = "Salivary melatonin concentr. [pg/ml]"
+    x = "Time since wake-up [h]",
+    y = "Salivary melatonin concentration [pg/ml]"
   )
   # p <- p +
   #   guides(
@@ -571,11 +576,10 @@ create_scatter_sine_plot <- function(df,
   
   # Create base plot
   p <- ggplot2::ggplot(df, ggplot2::aes(x = .data[[x_col]], y = .data[[y_col]])) +
-    geom_hline(
+    ggplot2::geom_hline(
       yintercept = 0,
       linetype = "dashed",
-      color = "#990033",
-      ggplot2::aes(linetype = "zero")
+      color = "#990033"
     ) +
     # Data points
     ggplot2::geom_point(
@@ -591,7 +595,7 @@ create_scatter_sine_plot <- function(df,
     warning("Circular parameters are missing.")
   } else {
     p +
-      # Sinus curve
+      # Cosine curve
       ggplot2::stat_function(
         fun = function(x)
           est_mesor + est_amplitude * cos((2 * pi * x / tau) + est_phase),
@@ -645,11 +649,10 @@ create_scatter_plot_fitted <- function(df,
   
   # Create base plot
   p <- ggplot2::ggplot(df, ggplot2::aes(x = .data[[x_col]], y = .data[[y_col]])) +
-    geom_hline(
+    ggplot2::geom_hline(
       yintercept = 0,
       linetype = "dashed",
-      color = "#990033",
-      ggplot2::aes(linetype = "zero")
+      color = "#990033"
     ) +
     # Data points
     ggplot2::geom_point(
@@ -770,11 +773,10 @@ create_scatter_plot_fun <- function(df,
   p <-
     # Base line plot
     ggplot2::ggplot(df, ggplot2::aes(x = .data[[x_col]], y = .data[[y_col]])) +
-    geom_hline(
+    ggplot2::geom_hline(
       yintercept = 0,
       linetype = "dashed",
-      color = "#990033",
-      ggplot2::aes(linetype = "zero")
+      color = "#990033"
     ) +
     # Data points
     ggplot2::geom_point(
@@ -793,7 +795,7 @@ create_scatter_plot_fun <- function(df,
         fun = fitted_fun,
         color = "#30476B",
         linetype = "solid",
-        ggplot2::aes(colour = "Sinusoid fit")
+        ggplot2::aes(colour = "Cosinor fit")
       )
   } else {
     warning("No fitted function provided, showing only data points")
@@ -883,8 +885,8 @@ fit_cosinor_hormones_main <-
       p = combined_plot,
       out_dir = out_figs,
       filename = "fig_melatonin_tau_gof.pdf",
-      w = 15,
-      h = 15
+      w = 14,
+      h = 14
     )
     
     # Create scatter plot with fitted function
@@ -915,8 +917,8 @@ fit_cosinor_hormones_main <-
       p = combined_plot,
       out_dir = out_figs,
       filename = "fig_melatonin_scatter-func.pdf",
-      w = 15,
-      h = 15
+      w = 14,
+      h = 14
     )
     
     

@@ -215,7 +215,7 @@ def plot_melatonin(
                 * (np.cos(2 * (2 * np.pi * x) / tau))
             )
         )
-    ax.plot(x, y, color="#30476B", linestyle="solid", label="Sinusoid fit")
+    ax.plot(x, y, color="#30476B", linestyle="solid", label="Cosinor fit")
     # ax.grid(True)
 
 def create_plot_blocks_individual_timecourses(data: pd.DataFrame, letter: str = None):
@@ -295,7 +295,7 @@ def create_plot_blocks_individual_timecourses(data: pd.DataFrame, letter: str = 
                 secax.set_xticklabels(
                     ["00:00", "08:00", "16:00", "24:00", "32:00", "40:00"]
                 )
-                secax.set_xlabel("Time since wake up [hh:mm]")
+                secax.set_xlabel("Time since wake-up [hh:mm]")
                 ax.get_xaxis().set_visible(False)
             elif i_pid == len(data.participant_id.unique()) - 1:
                 ax.set_xticks(sorted(data["block"].unique()))
@@ -338,7 +338,7 @@ def create_plot_blocks_individual_timecourses(data: pd.DataFrame, letter: str = 
     fig.text(
         x=distance_left_edge,
         y=(1 - distance_top_edge) + (distance_top_edge * 2 / 3),
-        s="Individual temporal contrast sensitivity over 40 hours",
+        s="Individual temporal contrast sensitivities over 40 hours",
         transform=fig.transFigure,
         fontsize=14,
         # fontfamily="Arial",
@@ -411,7 +411,7 @@ def create_plot_blocks_group_timecourses(data):
             [-0.266, 1.8666666, 4, 6.13333, 8.266666, 10.4],
             ["00:00", "08:00", "16:00", "24:00", "32:00", "40:00"],
         )
-        secax.set_xlabel("Time since wake up [hh:mm]")
+        secax.set_xlabel("Time since wake-up [hh:mm]")
 
         if i_freq == 1:
             # y axis
@@ -439,7 +439,7 @@ def create_plot_blocks_group_timecourses(data):
     fig.text(
         x=distance_left_edge,
         y=(1 - distance_top_edge) + (distance_top_edge * 2 / 3),
-        s="Group data on psychophysical contrast threshold over time",
+        s="Group data on psychophysical contrast sensitivities over time",
         transform=fig.transFigure,
         fontsize=14,
         # fontweight="bold",
@@ -516,7 +516,7 @@ def create_plot_individual_timecourse_melatonin(data: pd.DataFrame, letter: str)
                 [0, 8, 16, 24, 32, 40],
                 ["00:00", "08:00", "16:00", "24:00", "32:00", "40:00"],
             )
-            secax.set_xlabel("Time since wake up [hh:mm]")
+            secax.set_xlabel("Time since wake-up [hh:mm]")
 
     # Set the same x-ticks for the new axis as the original plot
     # bottom_ax = fig.add_axes([0.15, 0.1, (0.95 - 0.15), 0])  # [left, bottom, width, height]
@@ -634,7 +634,7 @@ def create_plot_group_melatonin(df, x_col="hours_after_wakeup"):
         [0, 8, 16, 24, 32, 40],
         ["00:00", "08:00", "16:00", "24:00", "32:00", "40:00"],
     )
-    secax.set_xlabel("Time since wake up [hh:mm]")
+    secax.set_xlabel("Time since wake-up [hh:mm]")
     ax.set_xlim(-0.5, 41.5)
 
     # Title and legends

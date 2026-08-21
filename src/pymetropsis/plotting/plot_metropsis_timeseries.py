@@ -352,7 +352,7 @@ def creae_timeseries_plot_grid(data_dict, summary_dict, out_filepath):
     return fig, axs
 
 
-def main(in_dir = (DATA_DIR / "raw"), out_dir = FIG_DIR / "tcs", out_figname="fig_psychophysics_test_timeseries_212-2.svg"):
+def main(in_dir = (DATA_DIR / "raw"), out_dir = FIG_DIR / "tcs", out_figname="fig_psychophysics_test_timeseries_212-2.pdf"):
     # Set up paths
     # root_dir = "/Volumes/tscn-projects/civibe/data/raw/group/metropsis/fd_civibe/TCS-2e"
     os.makedirs(out_dir, exist_ok=True)
