@@ -34,7 +34,10 @@ codechecker:
     ORCID: 0000-0001-8607-8025
 
 summary: >
-  R scripts and Python notebooks.
+  The bulk of this project is a set of Rscripts.
+  There is also a python package that comes in the authors’ repository, and some Juypyter notebooks.
+  There was some work involved to reproduce the environment on my machine (a mac laptop).
+  However, following feeback with the authors, these issues were resolved and the reproduction was successful.
 repository: https://github.com/codecheckers/HeinrichsEtAl_JVis_2026
 check_time: "2026-08-21 10:00:00"
 certificate: 2026-023
