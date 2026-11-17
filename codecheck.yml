@@ -9,7 +9,8 @@ paper:
       ORCID: 0000-0001-5047-5205
     - name: Manuel Spitschan
       ORCID: 0000-0002-8572-9268
-  reference: https://doi.org/10.1101/2025.11.10.687546
+  reference: https://doi.org/10.1167/jov.26.10.14
+  preprint: https://doi.org/10.1101/2025.11.10.687546
 
 manifest:
   - file: results/figures/hormones/descriptives/img_melatonin_overview_figure.pdf
